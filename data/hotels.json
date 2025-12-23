@@ -28,7 +28,7 @@
     ],
     "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/max1280x900/457524208.jpg?k=5b680e7009b3fcdec99ae79d91decd52bcb7bb9ac0de30d1a5925f27834fe6bb&o=&hp=1",
     "availableRooms": 10,
-    "cityId": 101,
+    "cityId": 3,
     "amenities": [
       {
         "id": 1,
@@ -46,7 +46,7 @@
         "description": "A full-service spa offering massages and beauty treatments."
       }
     ],
-    "name": "Sunset Resortt"
+    "name": "Sunset Resort**"
   },
   {
     "id": 2,
@@ -54,7 +54,7 @@
     "location": "Swiss Alps, Switzerland",
     "description": "A serene mountain retreat offering panoramic views of the Alps and a perfect escape from the hustle of city life.",
     "hotelType": "Boutique",
-    "starRating": 4,
+    "starRating": "4",
     "latitude": 46.8182,
     "longitude": 8.2275,
     "rooms": [
@@ -77,7 +77,7 @@
     ],
     "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/max1280x900/457524209.jpg?k=6a680e7009b3fcdec99ae79d91decd52bcb7bb9ac0de30d1a5925f27834fe6bb&o=&hp=2",
     "availableRooms": 5,
-    "cityId": 102,
+    "cityId": 4,
     "amenities": [
       {
         "id": 1,
@@ -94,7 +94,8 @@
         "name": "Sauna",
         "description": "Recharge in the sauna after a day of outdoor activities."
       }
-    ]
+    ],
+    "name": "Mountain Retreat"
   },
   {
     "id": 3,
@@ -125,7 +126,7 @@
     ],
     "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/max1280x900/457524210.jpg?k=7b680e7009b3fcdec99ae79d91decd52bcb7bb9ac0de30d1a5925f27834fe6bb&o=&hp=3",
     "availableRooms": 15,
-    "cityId": 103,
+    "cityId": 5,
     "amenities": [
       {
         "id": 1,
@@ -142,55 +143,8 @@
         "name": "Restaurant",
         "description": "Enjoy gourmet meals at our on-site restaurant with a city view."
       }
-    ]
-  },
-  {
-    "id": 4,
-    "hotelName": "Tropical Paradise",
-    "location": "Maldives",
-    "description": "An exclusive resort located on a private island, offering overwater bungalows and a perfect tropical getaway.",
-    "hotelType": "Resort",
-    "starRating": 5,
-    "latitude": -2.9737,
-    "longitude": 73.5367,
-    "rooms": [
-      {
-        "id": 401,
-        "name": "Overwater Bungalow",
-        "type": "Deluxe",
-        "price": 800,
-        "available": true,
-        "maxOccupancy": 2
-      },
-      {
-        "id": 402,
-        "name": "Beachfront Villa",
-        "type": "Villa",
-        "price": 1000,
-        "available": false,
-        "maxOccupancy": 4
-      }
     ],
-    "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/max1280x900/457524211.jpg?k=8c680e7009b3fcdec99ae79d91decd52bcb7bb9ac0de30d1a5925f27834fe6bb&o=&hp=4",
-    "availableRooms": 3,
-    "cityId": 104,
-    "amenities": [
-      {
-        "id": 1,
-        "name": "Private Beach",
-        "description": "Exclusive access to the resort's private beach."
-      },
-      {
-        "id": 2,
-        "name": "Water Sports",
-        "description": "Enjoy a variety of water sports including jet skiing, snorkeling, and diving."
-      },
-      {
-        "id": 3,
-        "name": "Sunset Dining",
-        "description": "Experience fine dining with a breathtaking sunset view."
-      }
-    ]
+    "name": "City Center Inn*"
   },
   {
     "id": 5,
@@ -221,7 +175,7 @@
     ],
     "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/max1280x900/457524212.jpg?k=9d680e7009b3fcdec99ae79d91decd52bcb7bb9ac0de30d1a5925f27834fe6bb&o=&hp=5",
     "availableRooms": 12,
-    "cityId": 105,
+    "cityId": 3,
     "amenities": [
       {
         "id": 1,
@@ -269,7 +223,7 @@
     ],
     "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/max1280x900/457524213.jpg?k=ac680e7009b3fcdec99ae79d91decd52bcb7bb9ac0de30d1a5925f27834fe6bb&o=&hp=6",
     "availableRooms": 8,
-    "cityId": 106,
+    "cityId": 4,
     "amenities": [
       {
         "id": 1,
@@ -286,7 +240,8 @@
         "name": "Luxury Spa",
         "description": "Indulge in a desert-themed spa experience."
       }
-    ]
+    ],
+    "name": "Desert Oasis Resort*"
   },
   {
     "id": 7,
@@ -317,7 +272,7 @@
     ],
     "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/max1280x900/457524214.jpg?k=bd680e7009b3fcdec99ae79d91decd52bcb7bb9ac0de30d1a5925f27834fe6bb&o=&hp=7",
     "availableRooms": 10,
-    "cityId": 107,
+    "cityId": 5,
     "amenities": [
       {
         "id": 1,
@@ -365,7 +320,7 @@
     ],
     "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/max1280x900/457524215.jpg?k=cd680e7009b3fcdec99ae79d91decd52bcb7bb9ac0de30d1a5925f27834fe6bb&o=&hp=8",
     "availableRooms": 6,
-    "cityId": 108,
+    "cityId": 6,
     "amenities": [
       {
         "id": 1,
@@ -413,7 +368,7 @@
     ],
     "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/max1280x900/457524216.jpg?k=dd680e7009b3fcdec99ae79d91decd52bcb7bb9ac0de30d1a5925f27834fe6bb&o=&hp=9",
     "availableRooms": 10,
-    "cityId": 109,
+    "cityId": 5,
     "amenities": [
       {
         "id": 1,
@@ -461,7 +416,7 @@
     ],
     "imageUrl": "https://cf.bstatic.com/xdata/images/hotel/max1280x900/457524217.jpg?k=ed680e7009b3fcdec99ae79d91decd52bcb7bb9ac0de30d1a5925f27834fe6bb&o=&hp=10",
     "availableRooms": 5,
-    "cityId": 110,
+    "cityId": 6,
     "amenities": [
       {
         "id": 1,
@@ -481,183 +436,244 @@
     ]
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "Ocean View Hotel",
+    "hotelName": "Ocean View Hotel",
+    "location": "Los Angeles, USA",
     "description": "A luxurious beachfront hotel with breathtaking ocean views.",
     "hotelType": "Resort",
     "starRating": 5,
     "latitude": 34.0522,
-    "longitude": -118.2437
+    "longitude": -118.2437,
+    "cityId": 3
   },
   {
-    "id": 11,
+    "id": 12,
     "name": "Mountain Retreat",
+    "hotelName": "Mountain Retreat",
+    "location": "Denver, USA",
     "description": "A peaceful getaway nestled in the mountains, perfect for relaxation.",
     "hotelType": "Lodge",
     "starRating": 4,
     "latitude": 39.7392,
-    "longitude": -104.9903
+    "longitude": -104.9903,
+    "cityId": 4
   },
   {
-    "id": 12,
+    "id": 13,
     "name": "City Plaza Hotel",
+    "hotelName": "City Plaza Hotel",
+    "location": "New York, USA",
     "description": "A modern hotel located in the heart of the city with easy access to all attractions.",
     "hotelType": "Hotel",
     "starRating": 3,
     "latitude": 40.7128,
-    "longitude": -74.006
+    "longitude": -74.006,
+    "cityId": 5
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "Forest Sanctuary",
+    "hotelName": "Forest Sanctuary",
+    "location": "San Francisco, USA",
     "description": "A retreat surrounded by lush forests offering a tranquil escape.",
     "hotelType": "Resort",
     "starRating": 4,
     "latitude": 37.7749,
-    "longitude": -122.4194
+    "longitude": -122.4194,
+    "cityId": 6
   },
   {
-    "id": 14,
+    "id": 15,
     "name": "Desert Oasis",
+    "hotelName": "Desert Oasis",
+    "location": "Las Vegas, USA",
     "description": "A beautiful resort in the desert with luxurious amenities.",
     "hotelType": "Resort",
     "starRating": 5,
     "latitude": 36.1699,
-    "longitude": -115.1398
+    "longitude": -115.1398,
+    "cityId": 3
   },
   {
-    "id": 15,
+    "id": 16,
     "name": "Coastal Escape",
+    "hotelName": "Coastal Escape",
+    "location": "West Palm Beach, USA",
     "description": "A relaxing coastal retreat with scenic views and comfortable rooms.",
     "hotelType": "Hotel",
     "starRating": 3,
     "latitude": 26.7153,
-    "longitude": -80.0534
+    "longitude": -80.0534,
+    "cityId": 4
   },
   {
-    "id": 16,
+    "id": 17,
     "name": "Luxury Skyline Hotel",
+    "hotelName": "Luxury Skyline Hotel",
+    "location": "London, UK",
     "description": "A high-rise hotel offering stunning views of the city skyline.",
     "hotelType": "Hotel",
     "starRating": 5,
     "latitude": 51.5074,
-    "longitude": -0.1278
+    "longitude": -0.1278,
+    "cityId": 5
   },
   {
-    "id": 17,
+    "id": 18,
     "name": "Riverside Resort",
+    "hotelName": "Riverside Resort",
+    "location": "Paris, France",
     "description": "A resort situated along a scenic river offering a peaceful retreat.",
     "hotelType": "Resort",
     "starRating": 4,
     "latitude": 48.8566,
-    "longitude": 2.3522
+    "longitude": 2.3522,
+    "cityId": 6
   },
   {
-    "id": 18,
+    "id": 19,
     "name": "Skyview Heights",
+    "hotelName": "Skyview Heights",
+    "location": "Queens, New York, USA",
     "description": "A modern high-rise offering panoramic views of the city below.",
     "hotelType": "Hotel",
     "starRating": 4,
     "latitude": 40.7306,
-    "longitude": -73.9352
+    "longitude": -73.9352,
+    "cityId": 3
   },
   {
-    "id": 19,
+    "id": 20,
     "name": "Island Paradise",
+    "hotelName": "Island Paradise",
+    "location": "Honolulu, Hawaii, USA",
     "description": "A tropical island resort with crystal-clear waters and white sandy beaches.",
     "hotelType": "Resort",
     "starRating": 5,
     "latitude": 21.3069,
-    "longitude": -157.8583
+    "longitude": -157.8583,
+    "cityId": 4
   },
   {
-    "id": 20,
+    "id": 21,
     "name": "Historic Inn",
+    "hotelName": "Historic Inn",
+    "location": "Boston, USA",
     "description": "A charming inn with a rich history, offering a cozy atmosphere and antique decor.",
     "hotelType": "Inn",
     "starRating": 3,
     "latitude": 42.3601,
-    "longitude": -71.0589
+    "longitude": -71.0589,
+    "cityId": 5
   },
   {
-    "id": 21,
+    "id": 22,
     "name": "Seaside View Lodge",
+    "hotelName": "Seaside View Lodge",
+    "location": "California, USA",
     "description": "A cozy lodge offering beautiful views of the ocean.",
     "hotelType": "Lodge",
     "starRating": 4,
     "latitude": 36.7783,
-    "longitude": -119.4179
+    "longitude": -119.4179,
+    "cityId": 6
   },
   {
-    "id": 22,
+    "id": 23,
     "name": "Alpine Adventure Hotel",
+    "hotelName": "Alpine Adventure Hotel",
+    "location": "Yellowstone, USA",
     "description": "A perfect stay for adventure enthusiasts near the mountains and ski resorts.",
     "hotelType": "Hotel",
     "starRating": 4,
     "latitude": 44.428,
-    "longitude": -110.5885
+    "longitude": -110.5885,
+    "cityId": 3
   },
   {
-    "id": 23,
+    "id": 24,
     "name": "Garden View Resort",
+    "hotelName": "Garden View Resort",
+    "location": "Atlanta, USA",
     "description": "A peaceful resort surrounded by beautifully manicured gardens.",
     "hotelType": "Resort",
     "starRating": 3,
     "latitude": 33.749,
-    "longitude": -84.388
+    "longitude": -84.388,
+    "cityId": 4
   },
   {
-    "id": 24,
+    "id": 25,
     "name": "City Lights Hotel",
+    "hotelName": "City Lights Hotel",
+    "location": "Los Angeles, USA",
     "description": "A hotel located in the downtown area, ideal for business and leisure stays.",
     "hotelType": "Hotel",
     "starRating": 3,
     "latitude": 34.0522,
-    "longitude": -118.2437
+    "longitude": -118.2437,
+    "cityId": 5
   },
   {
-    "id": 25,
+    "id": 26,
     "name": "Lakeside Retreat",
+    "hotelName": "Lakeside Retreat",
+    "location": "Chicago, USA",
     "description": "A serene lakeside retreat offering outdoor activities and a peaceful atmosphere.",
     "hotelType": "Resort",
     "starRating": 4,
     "latitude": 41.8781,
-    "longitude": -87.6298
+    "longitude": -87.6298,
+    "cityId": 6
   },
   {
-    "id": 26,
+    "id": 27,
     "name": "Palace Hotel",
+    "hotelName": "Palace Hotel",
+    "location": "Paris, France",
     "description": "A luxurious palace offering world-class service and opulent accommodations.",
     "hotelType": "Hotel",
     "starRating": 5,
     "latitude": 48.8566,
-    "longitude": 2.3522
+    "longitude": 2.3522,
+    "cityId": 3
   },
   {
-    "id": 27,
+    "id": 28,
     "name": "City Garden Inn",
+    "hotelName": "City Garden Inn",
+    "location": "New Haven, USA",
     "description": "A quaint inn with a beautiful garden, perfect for a relaxing getaway.",
     "hotelType": "Inn",
     "starRating": 3,
     "latitude": 41.3037,
-    "longitude": -72.928
+    "longitude": -72.928,
+    "cityId": 4
   },
   {
-    "id": 28,
+    "id": 29,
     "name": "Tropical Haven Resort",
+    "hotelName": "Tropical Haven Resort",
+    "location": "Miami, USA",
     "description": "A tropical resort surrounded by lush greenery and beautiful beaches.",
     "hotelType": "Resort",
     "starRating": 5,
     "latitude": 25.7617,
-    "longitude": -80.1918
+    "longitude": -80.1918,
+    "cityId": 5
   },
   {
-    "id": 29,
+    "id": 30,
     "name": "Desert Mirage",
+    "hotelName": "Desert Mirage",
+    "location": "Phoenix, USA",
     "description": "A luxury resort with stunning views of the desert landscape.",
     "hotelType": "Resort",
     "starRating": 4,
     "latitude": 33.4484,
-    "longitude": -112.074
+    "longitude": -112.074,
+    "cityId": 6
   }
+ 
 ]

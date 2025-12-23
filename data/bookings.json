@@ -1,11 +1,24 @@
-{
-  "customerName": "Alice Green",
-  "hotelName": "Sunset Resort",
-  "roomNumber": "102",
-  "roomType": "Ocean View Suite",
-  "bookingDateTime": "2025-02-10T14:30:00Z",
-  "totalCost": 1200.0,
-  "paymentMethod": "Credit Card",
-  "bookingStatus": "Confirmed",
-  "confirmationNumber": "ABC123XYZ"
-}
+[
+  {
+    "customerName": "Mayar",
+    "hotelName": "Sunset Resort",
+    "roomNumber": "102",
+    "roomType": "Ocean View Suite",
+    "bookingDateTime": "2025-02-10T14:30:00Z",
+    "totalCost": 1200.0,
+    "paymentMethod": "Credit Card",
+    "bookingStatus": "Confirmed",
+    "confirmationNumber": "ABC123XYZ"
+  },
+  {
+    "customerName": "Mayar",
+    "hotelName": "Sunset Resort",
+    "roomNumber": "103",
+    "roomType": "Ocean View Suite",
+    "bookingDateTime": "2025-03-05T11:00:00Z",
+    "totalCost": 1150.0,
+    "paymentMethod": "Credit Card",
+    "bookingStatus": "Confirmed",
+    "confirmationNumber": "DEF456LMN"
+  }
+]

@@ -4,6 +4,8 @@ const path = require("path");
 const cors = require("cors");
 const morgan = require("morgan");
 // const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
+
 const app = express();
 const PORT = 5000;
 
@@ -74,22 +76,25 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
+
 app.post("/api/auth/authenticate", (req, res) => {
-  if (req.body.userName == "user" && req.body.password == "user") {
-    res.json({
-      authentication:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMiIsImdpdmVuX25hbWUiOiJNYXplbiIsImZhbWlseV9uYW1lIjoiU2FtaSIsInVzZXJUeXBlIjoiVXNlciIsIm5iZiI6MTczMjExNTQyMCwiZXhwIjoxNzMyMTE5MDIwLCJpc3MiOiJodHRwczovL2FwcC1ob3RlbC1yZXNlcnZhdGlvbi13ZWJhcGktdWFlLWRldi0wMDEuYXp1cmV3ZWJzaXRlcy5uZXQifQ.SosxseAWXFuoNqSkeeurjet6FiqEX-4Mheo4o1DbCYc",
-      userType: "User",
-    });
-  } else if (req.body.userName == "admin" && req.body.password == "admin") {
-    res.json({
-      authentication:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMSIsImdpdmVuX25hbWUiOiJNb2hhbWFkIiwiZmFtaWx5X25hbWUiOiJNaWxoZW0iLCJ1c2VyVHlwZSI6IkFkbWluIiwibmJmIjoxNzMyNjQ4ODU5LCJleHAiOjE3MzI2NTI0NTksImlzcyI6Imh0dHBzOi8vYXBwLWhvdGVsLXJlc2VydmF0aW9uLXdlYmFwaS11YWUtZGV2LTAwMS5henVyZXdlYnNpdGVzLm5ldCJ9.IJ-ekmzr0FF1oNSrjDwElMZhoyc42H7nFq-3bWKuG8Q",
-      userType: "Admin",
-    });
+  const { userName, password } = req.body;
+
+  let payload, userType;
+
+  if (userName === "user" && password === "user") {
+    payload = { user_id: 2, given_name: "Mayar", family_name: "Qasarwa", userType: "User" };
+    userType = "User";
+  } else if (userName === "admin" && password === "admin") {
+    payload = { user_id: 1, given_name: "Mayar", family_name: "Qasarwa", userType: "Admin" };
+    userType = "Admin";
   } else {
-    res.status(401).json({ message: "Invalid user or password" });
+    return res.status(401).json({ message: "Invalid user or password" });
   }
+
+  const token = jwt.sign(payload, "your-secret", { expiresIn: "1h", issuer: "your-app" });
+
+  res.json({ authentication: token, userType });
 });
 
 app.get("/api/home/users/2/recent-hotels", (req, res) => {
@@ -106,7 +111,7 @@ app.get("/api/home/destinations/trending", (req, res) => {
 
 app.get("/api/hotels", (req, res) => {
   const hotels = getJsonData("hotels.json");
-  const { searchQuery = "", pageNumber = 1, pageSize = 5 } = req.query;
+  const { searchQuery = "", pageNumber = 1, pageSize = 10} = req.query;
   let filteredHotels = hotels;
   if (searchQuery) {
     filteredHotels = filteredHotels.filter(
@@ -130,6 +135,8 @@ app.get("/api/hotels", (req, res) => {
   res.json(paginatedHotels);
 });
 
+
+
 app.get("/api/hotels/:id/gallery", (req, res) => {
   res.json(getJsonData("gallery.json"));
 });
@@ -147,52 +154,253 @@ app.get("/api/hotels/:id/reviews", (req, res) => {
 });
 
 app.post("/api/bookings", (req, res) => {
-  res.json(getJsonData("reviews.json"));
+    const bookings = getJsonData("bookings.json"); // array of bookings
+  res.json(bookings[0]);
 });
 
 app.get("/api/bookings/:id", (req, res) => {
+  const bookings = getJsonData("bookings.json"); // array of bookings
+
+  if (bookings.length === 0) {
+    return res.status(404).json({ error: "No bookings found" });
+  }
+
+  res.json(bookings[0]);
+});
+
+app.get("/api/bookings", (req, res) => {
   res.json(getJsonData("bookings.json"));
 });
 
-app.get("/api/home/search", async (req, res) => {
-  const { city, checkInDate, checkOutDate, adults, children, numberOfRooms } =
-    req.query;
-  const rooms = getJsonData("searchResults.json");
-  let filteredResults = rooms;
-  if (city) {
-    filteredResults = filteredResults.filter((room) =>
-      room.cityName.toLowerCase().includes(city.toLowerCase())
-    );
-  }
 
-  if (adults) {
-    filteredResults = filteredResults.filter((room) => {
-      return room.numberOfAdults >= adults;
+app.get("/api/hotels/search", async (req, res) => {
+  try {
+    const {
+      city,
+      checkInDate,
+      checkOutDate,
+      adults,
+      children,
+      numberOfRooms,
+      page = "0",
+      limit = "6",
+     
+    } = req.query;
+
+    // Parse pagination params
+    const pageNum = parseInt(page, 10);
+    const limitNum = parseInt(limit, 10);
+    const offset = pageNum * limitNum;
+
+    // Get all rooms
+    const rooms = getJsonData("searchResults.json");
+    let filteredResults = rooms;
+
+    // ===== FILTERING =====
+
+    // Filter by city
+    if (city) {
+      filteredResults = filteredResults.filter((room) =>
+        room.cityName.toLowerCase().includes(city.toLowerCase())
+      );
+    }
+
+    // Filter by adults
+    if (adults) {
+      const adultsNum = parseInt(adults, 10);
+      filteredResults = filteredResults.filter(
+        (room) => room.numberOfAdults >= adultsNum
+      );
+    }
+
+    // Filter by children
+    if (children) {
+      const childrenNum = parseInt(children, 10);
+      filteredResults = filteredResults.filter(
+        (room) => room.numberOfChildren >= childrenNum
+      );
+    }
+
+    // Filter by number of rooms
+    if (numberOfRooms) {
+      const roomsNum = parseInt(numberOfRooms, 10);
+      filteredResults = filteredResults.filter(
+        (room) => room.numberOfRooms >= roomsNum
+      );
+    }
+
+    // Date filtering (if needed)
+    // if (checkInDate && checkOutDate) {
+    //   const userCheckIn = new Date(checkInDate);
+    //   const userCheckOut = new Date(checkOutDate);
+    //
+    //   filteredResults = filteredResults.filter((room) => {
+    //     const roomAvailableFrom = new Date(room.checkInDate);
+    //     const roomAvailableTo = new Date(room.checkOutDate);
+    //
+    //     return (
+    //       roomAvailableFrom <= userCheckIn &&
+    //       roomAvailableTo >= userCheckOut
+    //     );
+    //   });
+    // }
+
+   
+
+    // ===== PAGINATION =====
+
+    const totalResults = filteredResults.length;
+    const paginatedResults = filteredResults.slice(offset, offset + limitNum);
+    const totalPages = Math.ceil(totalResults / limitNum);
+    const hasMore = pageNum < totalPages - 1;
+    const nextCursor = hasMore ? pageNum + 1 : null;
+
+    // Return paginated response
+    res.json({
+      success: true,
+      hotels: paginatedResults,
+      pagination: {
+        currentPage: pageNum,
+        totalPages,
+        totalResults,
+        resultsPerPage: limitNum,
+        hasMore,
+        nextCursor,
+      },
+    });
+  } catch (error) {
+    console.error("Search error:", error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while searching for hotels",
+      error: error.message,
     });
   }
-
-  if (children) {
-    filteredResults = filteredResults.filter(
-      (room) => room.numberOfChildren >= children
-    );
-  }
-
-  if (numberOfRooms) {
-    filteredResults = filteredResults.filter(
-      (room) => room.numberOfRooms >= numberOfRooms
-    );
-  }
-
-  res.json(filteredResults);
 });
+
 
 app.get("/api/search-results/amenities", (req, res) => {
   res.json(getJsonData("amenities.json"));
 });
 
 app.get("/api/cities", (req, res) => {
-  res.json(getJsonData("cities.json"));
+  const cities = getJsonData("cities.json");
+  const { searchQuery = "" } = req.query;
+
+  const filteredCities = cities.filter(
+    (city) =>
+      city.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      city.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  res.json(filteredCities);
 });
+
+
+
+app.get("/api/home/search", async (req, res) => {
+  try {
+    const {
+      city,
+      checkInDate,
+      checkOutDate,
+      adults,
+      children,
+      numberOfRooms,
+      page = "0",
+      limit = "6",
+     
+    } = req.query;
+
+    const pageNum = parseInt(page, 10);
+    const limitNum = parseInt(limit, 10);
+    const offset = pageNum * limitNum;
+
+    // Get all rooms
+    const rooms = getJsonData("searchResults.json");
+    let filteredResults = rooms;
+
+    // ===== FILTERING =====
+
+    // Filter by city
+    if (city) {
+      filteredResults = filteredResults.filter((room) =>
+        room.cityName.toLowerCase().includes(city.toLowerCase())
+      );
+    }
+
+    // Filter by adults
+    if (adults) {
+      const adultsNum = parseInt(adults, 10);
+      filteredResults = filteredResults.filter(
+        (room) => room.numberOfAdults >= adultsNum
+      );
+    }
+
+    if (children) {
+      const childrenNum = parseInt(children, 10);
+      filteredResults = filteredResults.filter(
+        (room) => room.numberOfChildren >= childrenNum
+      );
+    }
+
+    // Filter by number of rooms
+    if (numberOfRooms) {
+      const roomsNum = parseInt(numberOfRooms, 10);
+      filteredResults = filteredResults.filter(
+        (room) => room.numberOfRooms >= roomsNum
+      );
+    }
+
+    // Date filtering (if needed)
+    // if (checkInDate && checkOutDate) {
+    //   const userCheckIn = new Date(checkInDate);
+    //   const userCheckOut = new Date(checkOutDate);
+    //
+    //   filteredResults = filteredResults.filter((room) => {
+    //     const roomAvailableFrom = new Date(room.checkInDate);
+    //     const roomAvailableTo = new Date(room.checkOutDate);
+    //
+    //     return (
+    //       roomAvailableFrom <= userCheckIn &&
+    //       roomAvailableTo >= userCheckOut
+    //     );
+    //   });
+    // }
+
+   
+
+    // ===== PAGINATION =====
+
+    const totalResults = filteredResults.length;
+    const paginatedResults = filteredResults.slice(offset, offset + limitNum);
+    const totalPages = Math.ceil(totalResults / limitNum);
+    const hasMore = pageNum < totalPages - 1;
+    const nextCursor = hasMore ? pageNum + 1 : null;
+
+    // Return paginated response
+    res.json({
+      success: true,
+      hotels: paginatedResults,
+      pagination: {
+        currentPage: pageNum,
+        totalPages,
+        totalResults,
+        resultsPerPage: limitNum,
+        hasMore,
+        nextCursor,
+      },
+    });
+  } catch (error) {
+    console.error("Search error:", error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while searching for hotels",
+      error: error.message,
+    });
+  }
+});
+
 
 app.get("/api/hotels/:id/rooms", (req, res) => {
   res.json(getJsonData("rooms.json"));
@@ -219,46 +427,90 @@ app.post("/api/cities", (req, res) => {
   res.json(getJsonData("cities.json"));
 });
 
+// Update a hotel
 app.put("/api/hotels/:id", (req, res) => {
-  const newData = {
-    id: Number(req.params.id),
-    ...req.body,
-  };
-  writeJsonData("hotels.json", newData);
+  const hotelId = Number(req.params.id);
+  const hotels = getJsonData("hotels.json");
 
-  res.json(getJsonData("hotels.json"));
+  const index = hotels.findIndex((h) => h.id === hotelId);
+  if (index === -1) {
+    return res.status(404).json({ message: "Hotel not found" });
+  }
+
+  hotels[index] = { ...hotels[index], ...req.body, id: hotelId };
+  fs.writeFileSync(path.join(__dirname, "data", "hotels.json"), JSON.stringify(hotels, null, 2), "utf8");
+
+  res.json(hotels[index]);
 });
+
+// Delete a hotel
 app.delete("/api/hotels/:id", (req, res) => {
-  deleteJsonData("hotels.json", "id", req.params.id);
-  res.json(getJsonData("hotels.json"));
+  const hotelId = Number(req.params.id);
+  let hotels = getJsonData("hotels.json");
+
+  const initialLength = hotels.length;
+  hotels = hotels.filter((h) => h.id !== hotelId);
+
+  if (hotels.length === initialLength) {
+    return res.status(404).json({ message: "Hotel not found" });
+  }
+
+  fs.writeFileSync(path.join(__dirname, "data", "hotels.json"), JSON.stringify(hotels, null, 2), "utf8");
+
+  res.json({ message: `Hotel with id ${hotelId} deleted successfully`, hotels });
 });
+
+// Create a new hotel
 app.post("/api/hotels", (req, res) => {
-  const data = getJsonData("hotels.json");
-  writeJsonData("hotels.json", {
-    id: data[data.length - 1].id + 1,
-    ...req.body,
-  });
+  const hotels = getJsonData("hotels.json");
 
-  res.json(getJsonData("hotels.json"));
+  const newId = hotels.length > 0 ? Math.max(...hotels.map((h) => h.id)) + 1 : 1;
+  const newHotel = { id: newId, ...req.body };
+
+  hotels.push(newHotel);
+  fs.writeFileSync(path.join(__dirname, "data", "hotels.json"), JSON.stringify(hotels, null, 2), "utf8");
+
+  res.status(201).json(newHotel);
 });
 
-app.put("/api/rooms/:id", (req, res) => {
-  const newData = {
-    id: Number(req.params.id),
+app.get("/api/rooms", (req, res) => {
+  const rooms = getJsonData("rooms.json");
+  const { searchQuery } = req.query;
+
+  if (searchQuery) {
+    const filteredRooms = rooms.filter((room) =>
+      room.roomNumber.toString().includes(searchQuery)
+    );
+    return res.json(filteredRooms); 
+  }
+
+  res.json(rooms); 
+});
+
+
+
+app.put("/api/rooms/:roomId", (req, res) => {
+  const roomId = Number(req.params.roomId);
+  
+  const updatedRoom = {
+    roomId: roomId,
     ...req.body,
   };
+  
+  writeJsonData("rooms.json", updatedRoom, "roomId");
+  res.json(getJsonData("rooms.json"));
+});
 
-  writeJsonData("rooms.json", newData);
+app.delete("/api/rooms/:roomId", (req, res) => {
+  deleteJsonData("rooms.json", "roomId", req.params.roomId); 
   res.json(getJsonData("rooms.json"));
 });
-app.delete("/api/rooms/:id", (req, res) => {
-  deleteJsonData("rooms.json", "id", req.params.id);
-  res.json(getJsonData("rooms.json"));
-});
+
 app.post("/api/rooms", (req, res) => {
   const data = getJsonData("rooms.json");
+  const newRoomId = data.length > 0 ? data[data.length - 1].roomId + 1 : 1; 
   writeJsonData("rooms.json", {
-    id: data[data.length - 1].id + 1,
+    roomId: newRoomId,
     ...req.body,
   });
   res.json(getJsonData("rooms.json"));

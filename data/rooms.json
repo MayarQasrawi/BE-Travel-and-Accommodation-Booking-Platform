@@ -1,50 +1,11 @@
 [
   {
-    "roomId": 201,
-    "roomNumber": 101,
-    "roomPhotoUrl": "https://example.com/room1.jpg",
-    "roomType": "Deluxe Suite",
-    "capacityOfAdults": 2,
-    "capacityOfChildren": 2,
-    "amenities": [
-      {
-        "id": 1,
-        "name": "Free Wi-Fi",
-        "description": "High-speed internet access"
-      },
-      {
-        "id": 2,
-        "name": "Air Conditioning",
-        "description": "Individually controlled air conditioning"
-      }
-    ],
-    "price": 250.0,
-    "availability": true
-  },
-  {
-    "roomId": 202,
-    "roomNumber": 102,
-    "roomPhotoUrl": "https://example.com/room2.jpg",
-    "roomType": "Standard Room",
-    "capacityOfAdults": 2,
-    "capacityOfChildren": 1,
-    "amenities": [
-      {
-        "id": 3,
-        "name": "Flat-screen TV",
-        "description": "Includes international channels"
-      }
-    ],
-    "price": 150.0,
-    "availability": true
-  },
-  {
     "roomId": 203,
     "roomNumber": 103,
     "roomPhotoUrl": "https://example.com/room3.jpg",
     "roomType": "Executive Suite",
     "capacityOfAdults": 3,
-    "capacityOfChildren": 2,
+    "capacityOfChildren": 3,
     "amenities": [
       {
         "id": 4,
@@ -57,8 +18,8 @@
         "description": "Private balcony with sea view"
       }
     ],
-    "price": 350.0,
-    "availability": false
+    "price": 350,
+    "availability": true
   },
   {
     "roomId": 204,
@@ -74,7 +35,7 @@
         "description": "Includes a microwave and fridge"
       }
     ],
-    "price": 400.0,
+    "price": 400,
     "availability": true
   },
   {
@@ -96,7 +57,7 @@
         "description": "Netflix and streaming services included"
       }
     ],
-    "price": 500.0,
+    "price": 500,
     "availability": true
   },
   {
@@ -113,7 +74,7 @@
         "description": "Infinity pool with ocean view"
       }
     ],
-    "price": 1000.0,
+    "price": 1000,
     "availability": false
   },
   {
@@ -130,8 +91,8 @@
         "description": "Complimentary coffee and tea"
       }
     ],
-    "price": 120.0,
-    "availability": true
+    "price": 120,
+    "availability": false
   },
   {
     "roomId": 208,
@@ -147,7 +108,7 @@
         "description": "Round-the-clock dining services"
       }
     ],
-    "price": 220.0,
+    "price": 220,
     "availability": false
   },
   {
@@ -164,8 +125,8 @@
         "description": "Same-day laundry and dry cleaning"
       }
     ],
-    "price": 180.0,
-    "availability": true
+    "price": 180,
+    "availability": false
   },
   {
     "roomId": 210,
@@ -181,7 +142,7 @@
         "description": "Exclusive private dining experience"
       }
     ],
-    "price": 2000.0,
-    "availability": true
+    "price": 2000,
+    "availability": false
   }
 ]
