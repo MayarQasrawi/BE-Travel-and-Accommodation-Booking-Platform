@@ -183,7 +183,7 @@ app.get("/api/hotels/search", async (req, res) => {
       children,
       numberOfRooms,
       page = "0",
-      limit = "6",
+      limit = "12",
      
     } = req.query;
 
