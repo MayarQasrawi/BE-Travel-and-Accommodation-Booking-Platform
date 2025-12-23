@@ -158,7 +158,7 @@ app.post("/api/bookings", (req, res) => {
   res.json(bookings[0]);
 });
 
-app.get("/api/bookings/:id", (req, res) => {
+app.get("/api/bookings/:bookingId", (req, res) => {
   const bookings = getJsonData("bookings.json"); // array of bookings
 
   if (bookings.length === 0) {

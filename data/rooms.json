@@ -1,11 +1,11 @@
 [
   {
-    "roomId": 203,
-    "roomNumber": 103,
-    "roomPhotoUrl": "https://example.com/room3.jpg",
-    "roomType": "Executive Suite",
-    "capacityOfAdults": 3,
-    "capacityOfChildren": 3,
+    "roomId": 211,
+    "roomNumber": 500,
+    "roomPhotoUrl": "",
+    "roomType": "Standard Room",
+    "capacityOfAdults": 1,
+    "capacityOfChildren": 0,
     "amenities": [
       {
         "id": 4,
@@ -18,7 +18,7 @@
         "description": "Private balcony with sea view"
       }
     ],
-    "price": 350,
+    "price": 0,
     "availability": true
   },
   {
